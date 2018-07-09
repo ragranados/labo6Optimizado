@@ -19,7 +19,7 @@ public class Labo6Optimizado {
      */
     public static void main(String[] args) {
         FiltroDAO f= new FiltroDAO();
-        Filtro fil = new Filtro("codigo","astridteamo",4,true);
+        Filtro fil = new Filtro("PH3593A","wenasnoches",4,true);
         f.update(fil);
         ArrayList<Filtro> res= f.readAll();
         for(Filtro fe : res){
