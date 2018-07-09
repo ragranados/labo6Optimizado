@@ -38,6 +38,8 @@ public abstract class BaseDAO<T> implements DAO<T> {
     
     public abstract PreparedStatement getDeleteStatement(Connection con, T toDelete);
     
+    public abstract PreparedStatement getUpdateStatement(Connection con, T toUpdate);
+    
     
     @Override
     public boolean insert(T toInsert) {
@@ -111,7 +113,22 @@ public abstract class BaseDAO<T> implements DAO<T> {
 
     @Override
     public boolean update(T toUpdate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean update = false;
+        Connection con= null;
+        
+        try {
+            con = this.con.getConnection();
+            PreparedStatement ps = getUpdateStatement(con,toUpdate);
+            if(ps.executeUpdate()>0){
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        return true;
     }
 
     @Override

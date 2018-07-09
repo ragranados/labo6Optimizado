@@ -70,6 +70,26 @@ public class FiltroDAO extends BaseDAO<Filtro>{
     public PreparedStatement getDeleteStatement(Connection con, Filtro toDelete) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public PreparedStatement getUpdateStatement(Connection con, Filtro toUpdate) {
+        PreparedStatement ps = null;
+        String querty = "UPDATE "+table.TABLE_NAME+" SET "+table.fields[1]+" = ? , "+table.fields[2]+" = ? , "+table.fields[3]+
+                " = ? WHERE "+table.fields[0]+" = ?";
+        try {
+            ps = con.prepareStatement(querty);
+            ps.setString(1, toUpdate.getMarca());
+            ps.setInt(2, toUpdate.getStock());
+            ps.setBoolean(3, toUpdate.getExistencia());
+            ps.setString(4, toUpdate.getCodFiltro());
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FiltroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return ps;
+    }
     
     
 

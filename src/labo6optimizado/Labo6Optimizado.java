@@ -19,11 +19,13 @@ public class Labo6Optimizado {
      */
     public static void main(String[] args) {
         FiltroDAO f= new FiltroDAO();
+        Filtro fil = new Filtro("codigo","astridteamo",4,true);
+        f.update(fil);
         ArrayList<Filtro> res= f.readAll();
         for(Filtro fe : res){
-            System.out.println(fe.getCodFiltro());
+            System.out.println(fe.getCodFiltro()+" | "+fe.getMarca()+" | "+fe.getStock()+" | "+fe.getExistencia());
         }
-        Filtro fil = new Filtro("codigo","marca",12,true);
+        //Filtro fil = new Filtro("codigo","marca",12,true);
         //f.insert(fil);
         
     }
