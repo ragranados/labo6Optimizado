@@ -23,7 +23,9 @@ public class Labo6Optimizado {
         for(Filtro fe : res){
             System.out.println(fe.getCodFiltro());
         }
-        // TODO code application logic here
+        Filtro fil = new Filtro("codigo","marca",12,true);
+        //f.insert(fil);
+        
     }
     
 }

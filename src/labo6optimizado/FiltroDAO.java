@@ -50,6 +50,17 @@ public class FiltroDAO extends BaseDAO<Filtro>{
     @Override
     public PreparedStatement getInsertStatement(Connection con, Filtro _new) {
         PreparedStatement ps = null;
+        String querty = "INSERT INTO "+table.TABLE_NAME+" ("+table.fields[0]+","+table.fields[1]+","+table.fields[2]+","+table.fields[3]+") VALUES(?,?,?,?)";
+        try {
+            ps = con.prepareStatement(querty);
+            ps.setString(1, _new.getCodFiltro());
+            ps.setString(2, _new.getMarca());
+            ps.setInt(3, _new.getStock());
+            ps.setBoolean(4, true);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
         
         return ps;
